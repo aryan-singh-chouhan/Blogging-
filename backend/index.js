@@ -18,11 +18,22 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://blogging-1-ef5e.onrender.com"
+];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "https://your-frontend-domain.com"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
+
 
 app.use(cookieParser());
 
