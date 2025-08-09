@@ -16,11 +16,12 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use('/uploads', express.static('public/uploads'));
 
 const allowedOrigins = [
-  "http://localhost:5173", 
-  "https://blogging-1-ef5e.onrender.com"
+  "http://localhost:5173",
+  "https://blogging-1-ef5e.onrender.com", // frontend
+  "https://blogging-backend.onrender.com" // backend
 ];
 
 app.use(cors({
@@ -41,7 +42,8 @@ app.use("/auth", AuthUserRoute);
 app.use("/blog", blogsRoute);
 app.use("/dashboard", dashBoardRoute);
 app.use("/comment", commentRooute);
-app.use("/public", publicRoute);
+app.use("/public", publicRoute)
+
 
 
 app.listen(PORT, () => {
