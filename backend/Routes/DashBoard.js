@@ -5,6 +5,7 @@ import { deleteUser, getAllData, getUser } from "../Controller/DashBoardControll
 const dashBoardRoute = express.Router();
 
 dashBoardRoute.get('/', isAdmin, getAllData);
+
 dashBoardRoute.get('/allpost', isAdmin, getAllData);
 dashBoardRoute.get('/getuser', isAdmin, getUser);
 dashBoardRoute.delete('/deleteuser/:id', isAdmin, deleteUser);

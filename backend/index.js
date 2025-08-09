@@ -9,6 +9,7 @@ import blogsRoute from './Routes/BlogRoute.js';
 import dashBoardRoute from './Routes/DashBoard.js';
 import commentRooute from './Routes/CommentRoute.js';
 import publicRoute from './Routes/PublicRoute.js';
+import path from 'path';
 
 DataBaseConnect();
 const PORT = process.env.PORT;
@@ -16,7 +17,7 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
-app.use('/uploads', express.static('public/uploads'));
+app.use('/images', express.static(path.join(__dirname, 'uploads')));
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -37,6 +38,9 @@ app.use(cors({
 
 
 app.use(cookieParser());
+app.get('/', (req, res) => {
+  res.send('Backend is running successfully 🚀');
+});
 
 app.use("/auth", AuthUserRoute);
 app.use("/blog", blogsRoute);
