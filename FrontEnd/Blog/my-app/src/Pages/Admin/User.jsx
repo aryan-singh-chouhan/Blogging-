@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { dele, get } from "../../Services/EndPoint.js";
 
 function User() {
-  const [users, setUsers] = useState([]); // ✅ Initialize as empty array
+  const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
     try {
       const response = await get("dashboard/getuser");
-      console.log("API Response:", response.data); // ✅ Debugging
+      console.log("API Response:", response.data); 
       if (response.data && response.data.Users) {
         setUsers(response.data.Users);
       } else {
